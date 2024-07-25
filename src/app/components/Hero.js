@@ -9,7 +9,7 @@ const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [show, setShow] = useState(false);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState({ topButton: false, sectionButton: false });
   const navItems = ["Home", "Features", "Solution", "Process", "About Us"];
 
   const defaultOptions = {
@@ -36,8 +36,11 @@ const Hero = () => {
     setShow(false);
   };
 
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
+  const toggleDropdown = (button) => {
+    setDropdownVisible((prevState) => ({
+      ...prevState,
+      [button]: !prevState[button],
+    }));
   };
 
   return (
@@ -68,16 +71,16 @@ const Hero = () => {
           </ul>
           <div className="relative">
             <button
-              onClick={toggleDropdown}
+              onClick={() => toggleDropdown('topButton')}
               className="bg-[#FCF0F8] hover:bg-[#28C0F5] duration-300 hover:text-white text-black py-2 md:py-4 px-6 md:px-9 rounded-full text-[15px] md:text-[17px] font-[500]"
             >
               Get Started
             </button>
-            {dropdownVisible && (
+            {dropdownVisible.topButton && (
               <div className="absolute top-full left-0 mt-2 w-full bg-white text-black rounded-lg shadow-lg">
                 <a
                   href="https://www.jotform.com/233520788042859"
-                  className="block px-4 py-2 hover:bg-gray-200"
+                  className="block px-4 py-2 hover:bg-[#28C0F5] duration-300 hover:text-white"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -85,7 +88,7 @@ const Hero = () => {
                 </a>
                 <a
                   href="https://www.jotform.com/240868739736171"
-                  className="block px-4 py-2 hover:bg-gray-200"
+                  className="block px-4 py-2 hover:bg-[#28C0F5] duration-300 hover:text-white"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -144,12 +147,12 @@ const Hero = () => {
           <div className="flex gap-8">
             <div className="relative">
               <button
-                onClick={toggleDropdown}
+                onClick={() => toggleDropdown('sectionButton')}
                 className="bg-[#FCF0F8] hover:bg-[#28C0F5] duration-300 hover:text-white text-black py-2 md:py-4 px-6 md:px-9 rounded-full text-[15px] md:text-[17px] font-[500]"
               >
                 Get Started
               </button>
-              {dropdownVisible && (
+              {dropdownVisible.sectionButton && (
                 <div className="absolute top-full left-0 mt-2 w-full bg-white text-black rounded-lg shadow-lg">
                   <a
                     href="https://www.jotform.com/233520788042859"
