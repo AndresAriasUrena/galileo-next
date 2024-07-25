@@ -1,11 +1,13 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CTAnim from "../../../public/assets/lottie/CTA-anim.json";
 import Lottie from "react-lottie";
 
 const About = () => {
+  const [dropdownVisible, setDropdownVisible] = useState(null);
+
   useEffect(() => {
     AOS.init({ duration: 9000 });
   }, []);
@@ -16,6 +18,9 @@ const About = () => {
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
+  };
+const toggleDropdown = (dropdown) => {
+    setDropdownVisible(dropdownVisible === dropdown ? null : dropdown); // toggle dropdown visibility
   };
 
   return (
@@ -89,9 +94,34 @@ const About = () => {
             Galileo Capital is regulated in Costa Rica and United States
           </h3>
           <div className="flex items-center justify-center md:justify-start md:items-start">
-            <button className="mt-6 bg-[#FCF0F8] text-black py-4 px-9 rounded-full text-[17px] font-[500]">
+            <div className="relative">
+            <button
+              onClick={() => toggleDropdown("get-started-features")}
+              className="bg-[#FCF0F8] hover:bg-[#28C0F5] duration-300 hover:text-white text-black py-2 md:py-4 px-6 md:px-9 rounded-full text-[15px] md:text-[17px] font-[500]"
+            >
               Get Started
             </button>
+            {dropdownVisible === "get-started-features" && (
+              <div className="absolute top-full left-0 mt-2 bg-white text-black rounded-lg shadow-lg">
+                <a
+                  href="https://www.jotform.com/233520788042859"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
+                >
+                  For USA Individuals
+                </a>
+                <a
+                  href="https://www.jotform.com/240868739736171"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
+                >
+                  For USA Business
+                </a>
+              </div>
+            )}
+          </div>
           </div>
         </div>
       </div>
