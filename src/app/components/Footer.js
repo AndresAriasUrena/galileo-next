@@ -91,6 +91,22 @@ const Footer = () => {
           />
         </div>
       </div>
+      <div className="bg-[#505050] justify-center items-cente flex w-full h-8 ">
+        <a
+          href="https://aurigital.com"
+          target="_blank"
+          className="flex items-center"
+        >
+          <p className="text-white uppercase text-[10px] text-center p-1 ">
+            Designed and Development by :
+          </p>
+          <img
+            src="/assets/isotipo.png"
+            alt="aurigital"
+            className="h-[20px] w-[20px]"
+          />
+        </a>
+      </div>
     </div>
   );
 };
