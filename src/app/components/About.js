@@ -47,30 +47,30 @@ const toggleDropdown = (dropdown) => {
         <div className="px-8 py-14 rounded-[20px] hover-gradient">
           <img src="/assets/quotes.png" />
           <p className="pt-4 text-[15px] leading-[27px]">
-            Desde que empezamos a usar Galileo Capital, nuestras operaciones son
-            mucho más eficientes y seguras. La integración fue rápida y el
-            equipo de soporte siempre está disponible para ayudarnos. Recomiendo
-            encarecidamente sus servicios.
+            Since we started using Galileo Capital, our operations are
+            much more efficient and safe. The integration was quick and the
+            Support team is always available to help us. I recommend
+            highly recommend your services.
           </p>
         </div>
 
         <div className="px-8 py-14 rounded-[20px] hover-gradient">
           <img src="/assets/quotes.png" />
           <p className="pt-4 text-[15px] leading-[27px]">
-            Galileo Capital nos ha proporcionado una solución completa para
-            nuestras necesidades de liquidación de criptomonedas. Sus tarifas
-            competitivas y la atención al cliente personalizada han hecho una
-            gran diferencia para nuestra empresa.
+            Galileo Capital has provided us with a complete solution to
+            our cryptocurrency settlement needs. Your rates
+            Competitive solutions and personalized customer service have made a
+            big difference for our company.
           </p>
         </div>
 
         <div className="px-8 py-14 rounded-[20px] hover-gradient">
           <img src="/assets/quotes.png" />
           <p className="pt-4 text-[15px] leading-[27px]">
-            La tecnología avanzada de Galileo Capital y su enfoque en la
-            seguridad nos han permitido manejar grandes volúmenes de
-            transacciones con confianza. El cumplimiento regulatorio en EE.UU. y
-            Costa Rica es un gran plus.
+            Galileo Capital's advanced technology and focus on
+            security have allowed us to handle large volumes of
+            transactions with confidence. Regulatory compliance in the US and
+            Costa Rica is a big plus.
           </p>
         </div>
       </div>
