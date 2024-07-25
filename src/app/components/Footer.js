@@ -76,7 +76,7 @@ const Footer = () => {
       >
         <div className="flex items-center gap-4">
           <p className="text-[18px] leading-[27px] text-center md:text-start">
-            2021 Galileo Capital. All Rights Reserved.
+            2024 Galileo Capital. All Rights Reserved.
           </p>
         </div>
 
