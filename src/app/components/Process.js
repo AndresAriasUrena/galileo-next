@@ -1,17 +1,21 @@
 "use client";
 import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProcessAnim1 from "../../../public/assets/lottie/process1.json";
 import ProcessAnim2 from "../../../public/assets/lottie/process2.json";
 import ProcessAnim3 from "../../../public/assets/lottie/process3.json";
 import ProcessAnim4 from "../../../public/assets/lottie/process4.json";
-import Lottie from "react-lottie";
+
+// Dynamically import Lottie component
+const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 const Process = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -29,6 +33,7 @@ const Process = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
   const defaultOptions3 = {
     loop: true,
     autoplay: true,
@@ -37,6 +42,7 @@ const Process = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
   const defaultOptions4 = {
     loop: true,
     autoplay: true,

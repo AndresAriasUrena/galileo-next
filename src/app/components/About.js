@@ -1,9 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CTAnim from "../../../public/assets/lottie/CTA-anim.json";
-import Lottie from "react-lottie";
+
+// Dynamically import Lottie component
+const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 const About = () => {
   const [dropdownVisible, setDropdownVisible] = useState(null);
@@ -11,6 +14,7 @@ const About = () => {
   useEffect(() => {
     AOS.init({ duration: 9000 });
   }, []);
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -19,7 +23,8 @@ const About = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-const toggleDropdown = (dropdown) => {
+
+  const toggleDropdown = (dropdown) => {
     setDropdownVisible(dropdownVisible === dropdown ? null : dropdown); // toggle dropdown visibility
   };
 
@@ -35,7 +40,7 @@ const toggleDropdown = (dropdown) => {
       >
         <img src="/assets/fonts/What people are saying about us.svg" />
         <p className="text-[18px] leading-[32px] text-white/70">
-          Everything you need to liquidate your crypto assets realiably.
+          Everything you need to liquidate your crypto assets reliably.
         </p>
       </div>
 
@@ -49,8 +54,8 @@ const toggleDropdown = (dropdown) => {
           <p className="pt-4 text-[15px] leading-[27px]">
             Since we started using Galileo Capital, our operations are
             much more efficient and safe. The integration was quick and the
-            Support team is always available to help us. I recommend
-            highly recommend your services.
+            Support team is always available to help us. I highly recommend
+            your services.
           </p>
         </div>
 
@@ -58,8 +63,8 @@ const toggleDropdown = (dropdown) => {
           <img src="/assets/quotes.png" />
           <p className="pt-4 text-[15px] leading-[27px]">
             Galileo Capital has provided us with a complete solution to
-            our cryptocurrency settlement needs. Your rates
-            Competitive solutions and personalized customer service have made a
+            our cryptocurrency settlement needs. Your rates and
+            competitive solutions and personalized customer service have made a
             big difference for our company.
           </p>
         </div>
@@ -95,33 +100,33 @@ const toggleDropdown = (dropdown) => {
           </h3>
           <div className="flex items-center justify-center md:justify-start md:items-start">
             <div className="relative">
-            <button
-              onClick={() => toggleDropdown("get-started-features")}
-              className="bg-[#FCF0F8] hover:bg-[#28C0F5] duration-300 hover:text-white text-black py-2 md:py-4 px-6 md:px-9 rounded-full text-[15px] md:text-[17px] font-[500]"
-            >
-              Get Started
-            </button>
-            {dropdownVisible === "get-started-features" && (
-              <div className="absolute top-full left-0 mt-2 bg-white text-black rounded-lg shadow-lg">
-                <a
-                  href="https://www.jotform.com/233520788042859"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
-                >
-                  For USA Individuals
-                </a>
-                <a
-                  href="https://www.jotform.com/240868739736171"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
-                >
-                  For USA Business
-                </a>
-              </div>
-            )}
-          </div>
+              <button
+                onClick={() => toggleDropdown("get-started-features")}
+                className="bg-[#FCF0F8] hover:bg-[#28C0F5] duration-300 hover:text-white text-black py-2 md:py-4 px-6 md:px-9 rounded-full text-[15px] md:text-[17px] font-[500]"
+              >
+                Get Started
+              </button>
+              {dropdownVisible === "get-started-features" && (
+                <div className="absolute top-full left-0 mt-2 bg-white text-black rounded-lg shadow-lg">
+                  <a
+                    href="https://www.jotform.com/233520788042859"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
+                  >
+                    For USA Individuals
+                  </a>
+                  <a
+                    href="https://www.jotform.com/240868739736171"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
+                  >
+                    For USA Business
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

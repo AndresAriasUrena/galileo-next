@@ -1,12 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import HeroAnim from "../../../public/assets/lottie/hero-anim.json";
-import Lottie from "react-lottie";
+import "aos/dist/aos.css";
+
+const Lottie = dynamic(() => import("react-lottie"), { ssr: false });
 
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [show, setShow] = useState(false);
-  const [dropdownVisible, setDropdownVisible] = useState(null); // track which dropdown is visible
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const navItems = ["Home", "Features", "Solution", "Process", "About Us"];
 
   const defaultOptions = {
@@ -18,20 +21,27 @@ const Hero = () => {
     },
   };
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const AOS = require("aos");
+      AOS.init({ duration: 1000 });
+    }
+  }, []);
+
   const handleNavClick = (index, sectionId) => {
-    console.log(`Nav item clicked: ${sectionId}`);
     setActiveIndex(index);
-    document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+    if (typeof document !== "undefined") {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    }
     setShow(false);
   };
 
-  const toggleDropdown = (dropdown) => {
-    console.log("Dropdown toggled");
-    setDropdownVisible(dropdownVisible === dropdown ? null : dropdown); // toggle dropdown visibility
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
   };
 
   return (
-    <div id="home" className="relative text-white gradient-background py-[5%]">
+    <div className="relative text-white gradient-background py-[5%]">
       <header className="flex justify-between w-full items-start">
         <div className="mx-auto md:mx-[5%] ">
           <img
@@ -58,26 +68,26 @@ const Hero = () => {
           </ul>
           <div className="relative">
             <button
-              onClick={() => toggleDropdown("get-started")}
+              onClick={toggleDropdown}
               className="bg-[#FCF0F8] hover:bg-[#28C0F5] duration-300 hover:text-white text-black py-2 md:py-4 px-6 md:px-9 rounded-full text-[15px] md:text-[17px] font-[500]"
             >
               Get Started
             </button>
-            {dropdownVisible === "get-started" && (
+            {dropdownVisible && (
               <div className="absolute top-full left-0 mt-2 w-full bg-white text-black rounded-lg shadow-lg">
                 <a
                   href="https://www.jotform.com/233520788042859"
+                  className="block px-4 py-2 hover:bg-gray-200"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-2 hover:bg-[#28C0F5] duration-300 hover:text-white"
                 >
                   For USA Individuals
                 </a>
                 <a
                   href="https://www.jotform.com/240868739736171"
+                  className="block px-4 py-2 hover:bg-gray-200"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
                 >
                   For USA Business
                 </a>
@@ -88,10 +98,7 @@ const Hero = () => {
 
         <div className="absolute top-5 right-4 lg:hidden">
           <img
-            onClick={() => {
-              console.log("Menu icon clicked");
-              setShow(!show);
-            }}
+            onClick={() => setShow(!show)}
             src="/assets/Icons/menu.svg"
             className="h-10 w-10 text-white "
           />
@@ -119,10 +126,14 @@ const Hero = () => {
         </div>
       </header>
 
-      <section className="flex px-[9%] flex-col h-[700px] lg:flex-row gap-[2%] 2xl:gap-[5%] pt-[5%] items-start justify-center">
+      <section
+        id="home"
+        className="flex px-[9%] flex-col h-[700px] lg:flex-row gap-[2%] 2xl:gap-[5%] pt-[5%] items-start justify-center"
+      >
         <div className="lg:w-[60%] space-y-8">
           <h2 className="text-[38px] md:text-[72px] font-[600] leading-[60px] lg:leading-[100px]">
-            Digital assets<br /> Done Right with
+            Digital assets
+            <br /> Done Right with
           </h2>
           <img src="/assets/fonts/Galileo capital.svg" className="w-full" />
           <p className="text-sm md:text-[23px] lg:text-[27px] font-[300] leading-[28px] md:leading-[38px]">
@@ -133,26 +144,26 @@ const Hero = () => {
           <div className="flex gap-8">
             <div className="relative">
               <button
-                onClick={() => toggleDropdown("get-started-hero")}
+                onClick={toggleDropdown}
                 className="bg-[#FCF0F8] hover:bg-[#28C0F5] duration-300 hover:text-white text-black py-2 md:py-4 px-6 md:px-9 rounded-full text-[15px] md:text-[17px] font-[500]"
               >
                 Get Started
               </button>
-              {dropdownVisible === "get-started-hero" && (
+              {dropdownVisible && (
                 <div className="absolute top-full left-0 mt-2 w-full bg-white text-black rounded-lg shadow-lg">
                   <a
                     href="https://www.jotform.com/233520788042859"
+                    className="block px-4 py-2 hover:bg-[#28C0F5] duration-300 hover:text-white"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
                   >
                     For USA Individuals
                   </a>
                   <a
                     href="https://www.jotform.com/240868739736171"
+                    className="block px-4 py-2 hover:bg-[#28C0F5] duration-300 hover:text-white"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block px-4 py-2  hover:bg-[#28C0F5] duration-300 hover:text-white"
                   >
                     For USA Business
                   </a>
@@ -160,14 +171,10 @@ const Hero = () => {
               )}
             </div>
             <button
-              onClick={() => {
-                console.log("Verify email clicked");
-                window.open(
-                  "https://in.sumsub.com/idensic/l/#/uni_k0Terawfp39AHWgi",
-                  "_blank",
-                  "noopener,noreferrer"
-                );
-              }}
+              onClick={() =>
+                (window.location.href =
+                  "https://in.sumsub.com/idensic/l/#/uni_k0Terawfp39AHWgi")
+              }
               className="bg-transparent border-2 border-[#28C0F5] hover:bg-[#28C0F5] duration-300 hover:text-white text-[#28C0F5] py-2 md:py-4 px-6 md:px-9 rounded-full text-[15px] md:text-[17px] font-[500]"
             >
               Verify email
